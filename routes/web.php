@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlatformsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -20,6 +21,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('platform-layout', function () {
         return Inertia::render('platform-layout');
     })->name('platform-layout');
+
+    Route::post('platform-layout', [PlatformsController::class, 'store'])->name('platforms.store');
 });
 
 require __DIR__.'/settings.php';

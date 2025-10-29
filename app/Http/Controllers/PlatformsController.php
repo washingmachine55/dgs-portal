@@ -29,7 +29,7 @@ class PlatformsController extends Controller
      */
     public function store(StorePlatformsRequest $request)
     {
-        //
+        dd('store time tracking');
     }
 
     /**
