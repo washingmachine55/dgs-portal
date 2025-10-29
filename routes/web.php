@@ -14,9 +14,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-    Route::get('time-tracking', function () {
-        return Inertia::render('time-tracking');
-    })->name('time-tracking');
+    Route::get('platform-tracking', function () {
+        return Inertia::render('platform-tracking');
+    })->name('platform-tracking');
+    Route::get('platform-layout', function () {
+        return Inertia::render('platform-layout');
+    })->name('platform-layout');
 });
 
 require __DIR__.'/settings.php';

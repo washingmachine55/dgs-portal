@@ -16,9 +16,9 @@ export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
             viewBox="0 0 24 24"
             // fill="none"
             // stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             {...props}
             // class="lucide lucide-gamepad2-icon lucide-gamepad-2"
         >

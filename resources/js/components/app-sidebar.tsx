@@ -10,10 +10,16 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard, timeTracking } from '@/routes';
+import { dashboard, platformLayout, platformTracking } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutDashboard, Timer } from 'lucide-react';
+import {
+    BookOpen,
+    Folder,
+    LayoutDashboard,
+    LayoutTemplate,
+    Timer,
+} from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -23,9 +29,14 @@ const mainNavItems: NavItem[] = [
         icon: LayoutDashboard,
     },
     {
-        title: 'Time Tracking',
-        href: timeTracking(),
+        title: 'Platform Tracking',
+        href: platformTracking(),
         icon: Timer,
+    },
+    {
+        title: 'Platform Layout',
+        href: platformLayout(),
+        icon: LayoutTemplate,
     },
 ];
 
