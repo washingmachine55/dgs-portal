@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PlatformTimeTracking;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,5 +24,12 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         );
+
+        $this->call([
+            PlatformCategoriesSeeder::class,
+            GamesSeeder::class,
+            PlatformsSeeder::class,
+            PlatformTimeTrackingSeeder::class,
+        ]);
     }
 }
