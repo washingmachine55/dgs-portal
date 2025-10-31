@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\PlatformCategories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,21 @@ class PlatformCategoriesFactory extends Factory
      */
     public function definition(): array
     {
+        // $platformCategories = [
+        //     ['name' => 'PS5'],
+        //     ['name' => 'Xbox'],
+        //     ['name' => 'Racing Simulator'],
+        //     ['name' => 'Gaming PC - 122Hz'],
+        //     ['name' => 'Gaming PC - 200Hz'],
+        // ];
+
+        // foreach ($platformCategories as $platformCategory) {
+        //     PlatformCategories::factory()->create($platformCategory);
+        // }
+
         return [
-            'name' => fake()->name(),
+            // 'name' => fake()->name(),
+            // 'name' => array_rand($platformCategories),
         ];
     }
 }

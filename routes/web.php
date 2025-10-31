@@ -18,11 +18,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('platform-tracking', function () {
         return Inertia::render('platform-tracking');
     })->name('platform-tracking');
-    Route::get('platform-layout', function () {
-        return Inertia::render('platform-layout');
-    })->name('platform-layout');
+    // Route::get('platform-layout', function () {
+    //     return Inertia::render('platform-layout');
+    // })->name('platform-layout');
+    Route::get('platform-layout', [PlatformsController::class, 'index'])->name('platform-layout');
 
-    Route::post('platform-layout', [PlatformsController::class, 'store'])->name('platforms.store');
+    Route::post('platform-layout', [PlatformsController::class, 'store'])->name('PlatformsController.store');
+    Route::delete('platform-layout/{id}', [PlatformsController::class, 'destroy'])->name('PlatformsController.destroy');
 });
 
 require __DIR__.'/settings.php';

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePlatformsRequest extends FormRequest
@@ -9,10 +10,11 @@ class UpdatePlatformsRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    // public function authorize(): bool
-    // {
-    //     return false;
-    // }
+    public function authorize(): bool
+    {
+        return false;
+        // return Auth::check();
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -22,7 +24,8 @@ class UpdatePlatformsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'],
+            'category' => ['required', 'string', 'max:255'],
         ];
     }
 }

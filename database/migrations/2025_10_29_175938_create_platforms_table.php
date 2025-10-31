@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('platforms', function (Blueprint $table) {
-            $table->id();
+            $table->id()->onDelete('cascade');
             $table->foreignId('platform_categories_id')->constrained('platform_categories')->onDelete('cascade');
             $table->string('name')->unique();
             $table->string('manufacturer')->nullable();

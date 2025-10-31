@@ -17,9 +17,9 @@ class GamesFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->word(),
-            'genre' => $this->faker->word(),
-            'multiplayer_only' => $this->faker->boolean(),
+            // 'name' => $this->faker->unique()->word(),
+            // 'genre' => $this->faker->word(),
+            // 'multiplayer_only' => $this->faker->boolean(),
         ];
     }
 }

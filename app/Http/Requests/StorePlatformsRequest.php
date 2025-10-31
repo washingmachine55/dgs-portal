@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePlatformsRequest extends FormRequest
@@ -11,7 +12,8 @@ class StorePlatformsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        // return false;
+        return Auth::check();
     }
 
     /**
@@ -22,7 +24,9 @@ class StorePlatformsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'category' => 'required|max:80',
+            'name' => 'required|unique:platforms|max:255',
+            'manufacturer' => 'nullable|max:255',
         ];
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Platforms;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PlatformCategories extends Model
 {
@@ -20,5 +22,10 @@ class PlatformCategories extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function platforms(): HasMany
+    {
+        return $this->hasMany(Platforms::class);
+    }
 
 }

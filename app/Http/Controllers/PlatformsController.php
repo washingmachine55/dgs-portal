@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use App\Models\Platforms;
+use App\Models\PlatformCategories;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePlatformsRequest;
 use App\Http\Requests\UpdatePlatformsRequest;
-use App\Models\Platforms;
 
 class PlatformsController extends Controller
 {
@@ -13,7 +17,24 @@ class PlatformsController extends Controller
      */
     public function index()
     {
-        //
+        $categories = PlatformCategories::get();
+
+        $platforms = DB::table('platforms')
+            ->join('platform_categories', 'platforms.platform_categories_id', '=', 'platform_categories.id', 'inner')
+            ->select('platforms.*', 'platform_categories.name AS platcatname', 'platforms.name AS name')
+            ->get();
+
+        return Inertia::render('platform-layout', [
+            'categories' => $categories,
+            'platforms' => $platforms->map(function ($platform) {
+                return [
+                    'id' => $platform->id,
+                    'name' => $platform->name,
+                    'manufacturer' => $platform->manufacturer,
+                    'category' => $platform->platcatname,
+                ];
+            }),
+        ]);
     }
 
     /**
@@ -21,7 +42,7 @@ class PlatformsController extends Controller
      */
     public function create()
     {
-        //
+        return dd('create');
     }
 
     /**
@@ -29,7 +50,17 @@ class PlatformsController extends Controller
      */
     public function store(StorePlatformsRequest $request)
     {
-        dd('store time tracking');
+        $validated = $request->validated();
+
+        // Retrieve a portion of the validated input data...
+        $validated = $request->safe()->only(['category','name', 'manufacturer']);
+        $platform = Platforms::create([
+            'platform_categories_id' => $validated['category'],
+            'name' => $validated['name'],
+            'manufacturer' => $validated['manufacturer'] ?? null,
+        ]);
+
+        // return redirect()->route('platform-layout');
     }
 
     /**
@@ -59,8 +90,12 @@ class PlatformsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Platforms $platforms)
+    // public function destroy(Platforms $platforms, $id)
+    public function destroy($id)
     {
-        //
+        if (Auth::check()) {
+            $platform = Platforms::findOrFail($id);
+            $platform->delete();
+        }
     }
 }
