@@ -5,16 +5,15 @@ namespace App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePlatformTimeTrackingRequest extends FormRequest
+class CreatePlatformTimeTrackingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        // return false;
-        return true;
         // return Auth::check();
+        return true;
     }
 
     /**
@@ -25,7 +24,7 @@ class UpdatePlatformTimeTrackingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // 'name' => ['required', 'string', 'max:255'],
         ];
     }
 }

@@ -61,6 +61,7 @@ class PlatformsController extends Controller
         ]);
 
         // return redirect()->route('platform-layout');
+        return to_route('platform-layout');
     }
 
     /**

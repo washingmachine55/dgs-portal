@@ -1,6 +1,7 @@
 import PlatformsController from '@/actions/App/Http/Controllers/PlatformsController';
 import DeletePlatform from '@/components/delete-platform';
 import InputError from '@/components/input-error';
+import { StartTimer } from '@/components/timer-button';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -76,9 +77,18 @@ export default function PlatformLayout({
                         platforms.map((platform) => (
                             <Card className="" key={platform.id}>
                                 <CardHeader>
-                                    <CardTitle>
-                                        <p key={platform.id}>{platform.name}</p>
-                                    </CardTitle>
+                                    <div className="mb-4 inline-flex items-center justify-between">
+                                        <CardTitle className="">
+                                            <p key={platform.id}>
+                                                {platform.name}
+                                            </p>
+                                        </CardTitle>
+                                        <DeletePlatform
+                                            id={platform.id}
+                                            category={platform.category}
+                                            name={platform.name}
+                                        />
+                                    </div>
                                     <CardDescription>
                                         <b>Manufacturer:</b>{' '}
                                         {platform.manufacturer}
@@ -88,12 +98,11 @@ export default function PlatformLayout({
                                 </CardHeader>
                                 <CardFooter className="w-full">
                                     {/*  */}
-                                    <DeletePlatform
+                                    <StartTimer
                                         id={platform.id}
-                                        category={platform.category}
+                                        // category={platform.category}
                                         name={platform.name}
                                     />
-                                    {/* <DeletePlatform /> */}
                                 </CardFooter>
                             </Card>
                         ))}
@@ -121,11 +130,9 @@ export default function PlatformLayout({
                                                         Add a new platform
                                                     </DialogTitle>
                                                     <DialogDescription>
-                                                        This action cannot be
-                                                        undone. This will
-                                                        permanently delete your
-                                                        account and remove your
-                                                        data from our servers.
+                                                        Fill up the form below
+                                                        to add a new platform to
+                                                        your list.
                                                     </DialogDescription>
                                                 </DialogHeader>
                                                 <div className="my-4 grid gap-4">

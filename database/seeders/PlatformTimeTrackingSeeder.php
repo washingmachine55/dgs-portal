@@ -13,6 +13,6 @@ class PlatformTimeTrackingSeeder extends Seeder
      */
     public function run(): void
     {
-        PlatformTimeTracking::factory(10)->create();
+        // PlatformTimeTracking::factory(10)->create();
     }
 }

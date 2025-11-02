@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('platform_id')->constrained('platforms')->onDelete('cascade');
             $table->date('date');
-            $table->foreignId('games_id')->constrained('games')->onDelete('cascade');
-            $table->time('start_time')->nullable();
+            $table->foreignId('games_id')->nullable()->constrained('games')->onDelete('cascade');
+            $table->time('start_time');
             $table->time('end_time')->nullable();
+            $table->boolean('stopped')->default(false);
             $table->timestamps();
         });
     }

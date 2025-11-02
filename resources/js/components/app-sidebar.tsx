@@ -10,12 +10,18 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard, platformLayout, platformTracking } from '@/routes';
+import {
+    dashboard,
+    platformLayout,
+    platformTracking,
+    trackingHistory,
+} from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import {
     BookOpen,
     Folder,
+    HistoryIcon,
     LayoutDashboard,
     LayoutTemplate,
     Timer,
@@ -37,6 +43,11 @@ const mainNavItems: NavItem[] = [
         title: 'Platform Layout',
         href: platformLayout(),
         icon: LayoutTemplate,
+    },
+    {
+        title: 'Tracking History',
+        href: trackingHistory(),
+        icon: HistoryIcon,
     },
 ];
 

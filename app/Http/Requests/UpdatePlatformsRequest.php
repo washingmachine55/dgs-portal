@@ -12,8 +12,8 @@ class UpdatePlatformsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
-        // return Auth::check();
+        // return false;
+        return Auth::check();
     }
 
     /**

@@ -16,15 +16,15 @@ class PlatformTimeTrackingFactory extends Factory
      */
     public function definition(): array
     {
-        $platformId = \App\Models\Platforms::all()->random()->id;
-        $gamesId = \App\Models\Games::all()->random()->id;
+        // $platformId = \App\Models\Platforms::all()->random()->id;
+        // $gamesId = \App\Models\Games::all()->random()->id;
 
         return [
-            'platform_id' => $platformId,
-            'date' => $this->faker->date(),
-            'games_id' => $gamesId ? $gamesId : null,
-            'start_time' => $this->faker->time(),
-            'end_time' => $this->faker->boolean(70) ? $this->faker->time() : null,
+            // 'platform_id' => $platformId,
+            // 'date' => $this->faker->date(),
+            // 'games_id' => $gamesId ? $gamesId : null,
+            // 'start_time' => $this->faker->time(),
+            // 'end_time' => $this->faker->boolean(70) ? $this->faker->time() : null,
         ];
     }
 }

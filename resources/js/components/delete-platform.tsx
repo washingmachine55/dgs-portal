@@ -10,7 +10,7 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { Form } from '@inertiajs/react';
-// import { useRef } from 'react';
+import { TrashIcon } from 'lucide-react';
 
 interface DeletePlatformProps {
     id: number;
@@ -18,19 +18,21 @@ interface DeletePlatformProps {
     name: string;
 }
 
-export default function DeletePlatform({ id, category, name }: DeletePlatformProps) {
-    // const passwordInput = useRef<HTMLInputElement>(null);
-
+export default function DeletePlatform({
+    id,
+    category,
+    name,
+}: DeletePlatformProps) {
     return (
-        <div className="w-full">
+        <div className="">
             <Dialog>
                 <DialogTrigger asChild>
                     <Button
                         variant="destructive"
-                        className="w-full"
+                        className="text-xs"
                         data-test="delete-user-button"
                     >
-                        Delete Platform
+                        <TrashIcon />
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
@@ -40,15 +42,18 @@ export default function DeletePlatform({ id, category, name }: DeletePlatformPro
                     <DialogDescription>
                         Once this platform is deleted, all of its resources and
                         data will also be permanently deleted. Please confirm if
-                        you would like to permanently delete
-                        this platform.
+                        you would like to permanently delete this platform.
                     </DialogDescription>
                     <div>
                         <p>
                             <b>Platform ID:</b> {id}
                         </p>
-                        <p><b>Platform Name:</b> {name}</p>
-                        <p><b>Platform:</b> {category}</p>
+                        <p>
+                            <b>Platform Name:</b> {name}
+                        </p>
+                        <p>
+                            <b>Platform:</b> {category}
+                        </p>
                     </div>
 
                     <Form
