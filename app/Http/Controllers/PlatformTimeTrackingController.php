@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
 use Carbon\Carbon;
+use Inertia\Inertia;
 use App\Models\Games;
 use App\Models\Platforms;
+use Carbon\CarbonTimeZone;
+use Carbon\CarbonInterface;
 use App\Models\PlatformCategories;
 use Illuminate\Support\Facades\DB;
 use App\Models\PlatformTimeTracking;
+use Illuminate\Auth\Events\Validated;
 use App\Http\Requests\StorePlatformTimeTrackingRequest;
 use App\Http\Requests\CreatePlatformTimeTrackingRequest;
 use App\Http\Requests\UpdatePlatformTimeTrackingRequest;
-use Carbon\CarbonTimeZone;
-use Illuminate\Auth\Events\Validated;
 
 class PlatformTimeTrackingController extends Controller
 {
@@ -23,7 +24,7 @@ class PlatformTimeTrackingController extends Controller
     public function index()
     {
         $categories = PlatformCategories::get();
-        $games = Games::get();
+        // $games = Games::get();
 
         // $platforms = DB::table('platforms')
         //     ->join('platform_categories', 'platforms.platform_categories_id', '=', 'platform_categories.id', 'inner')
@@ -122,7 +123,40 @@ class PlatformTimeTrackingController extends Controller
     // public function show(PlatformTimeTracking $platformTimeTracking)
     public function show()
     {
-        return Inertia::render('tracking-history');
+        $runningTimes = DB::table('platform_time_tracking')
+            ->join('platforms', 'platforms.id', '=', 'platform_time_tracking.platform_id', 'inner')
+            ->join('platform_categories', 'platforms.platform_categories_id', '=', 'platform_categories.id', 'inner')
+            ->select(
+                'platform_time_tracking.*',
+                'platforms.name as name',
+                'platforms.platform_categories_id AS category_id',
+                'platform_categories.name AS category')
+            ->where('platform_time_tracking.stopped', '=', true )
+            ->get();
+
+        $tz = new CarbonTimeZone("Asia/Karachi");
+
+        return Inertia::render('tracking-history', [
+            'platforms' => fn () => $runningTimes->map(function ($runningTime) {
+                return [
+                    'id' => $runningTime->id,
+                    'platform_id' => $runningTime->platform_id,
+                    'name' => $runningTime->name,
+                    'date' => Carbon::parse($runningTime->date)->toFormattedDayDateString(),
+                    'start_time' => Carbon::parse($runningTime->start_time, "Asia/Karachi")->format(' h:i:s A'),
+                    'end_time' => Carbon::parse($runningTime->end_time, "Asia/Karachi")->format(' h:i:s A'),
+                    'time_diff' => Carbon::parse($runningTime->end_time, "Asia/Karachi")
+                        ->copy()
+                        ->from($runningTime->start_time, [
+                            'syntax' => CarbonInterface::DIFF_ABSOLUTE,
+                            'parts' => 3,
+                            'short' => false,
+                            'join' => ', ', // join with commas
+                        ]),
+                    'category' => $runningTime->category,
+                ];
+            }),
+        ]);
     }
 
     /**

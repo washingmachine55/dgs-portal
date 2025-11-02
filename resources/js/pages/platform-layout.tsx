@@ -24,7 +24,7 @@ import {
 import { Icon } from '@/components/ui/icon';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
+// import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import {
     Select,
     SelectContent,
@@ -75,7 +75,7 @@ export default function PlatformLayout({
                 <div className="relative flex-1 flex-col overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                     {platforms &&
                         platforms.map((platform) => (
-                            <Card className="" key={platform.id}>
+                            <Card className="m-3" key={platform.id}>
                                 <CardHeader>
                                     <div className="mb-4 inline-flex items-center justify-between">
                                         <CardTitle className="">
@@ -237,12 +237,12 @@ export default function PlatformLayout({
                         </CardContent>
                     </Card>
                 </div>
-                <div className="relative flex-1 flex-col overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
+                {/* <div className="relative flex-1 flex-col overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                     <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                 </div>
                 <div className="relative flex-1 flex-col overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                     <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                </div>
+                </div> */}
             </div>
         </AppLayout>
     );
