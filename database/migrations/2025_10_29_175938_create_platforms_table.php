@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->onDelete('cascade');
             $table->foreignId('platform_categories_id')->constrained('platform_categories')->onDelete('cascade');
             $table->string('name')->unique();
-            $table->string('manufacturer')->nullable();
+            $table->string('manufacturer')->nullable()->default("N/A");
             $table->timestamps();
         });
     }

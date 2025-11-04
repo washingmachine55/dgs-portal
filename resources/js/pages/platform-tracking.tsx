@@ -1,7 +1,6 @@
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -12,6 +11,7 @@ import AppLayout from '@/layouts/app-layout';
 import { platformTracking } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head, usePoll } from '@inertiajs/react';
+import DeletePlatform from '@/components/delete-platform';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -31,15 +31,6 @@ interface Platform {
     name: string;
     start_time: string;
     platform_id: number;
-    // manufacturer: string;
-}
-
-interface RunningTime {
-    id: number;
-    category: number;
-    name: string;
-    start_time: Date;
-    // manufacturer: string;
 }
 
 interface Game {
@@ -50,17 +41,15 @@ interface Game {
 interface PlatformLayoutProps {
     categories: Category[];
     platforms: Platform[];
-    runningTimes: RunningTime[];
     games: Game[];
 }
 
 export default function PlatformTracking({
     categories,
     platforms,
-    // runningTimes,
     // games,
 }: PlatformLayoutProps) {
-    usePoll(1000); // temporarily stopping the automatic fetching
+    usePoll(1000); // automatic fetching every 1s (1000ms)
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Platform Tracking" />
@@ -84,16 +73,20 @@ export default function PlatformTracking({
                                     categoryPlatforms.map((platform) => (
                                         <Card className="" key={platform.id}>
                                             <CardHeader>
-                                                <CardTitle>
-                                                    {platform.name}
-                                                </CardTitle>
-                                                <CardDescription>
-                                                    Start Tracking Time for
-                                                    Platform {platform.name}
-                                                </CardDescription>
+                                                <div className="inline-flex items-center justify-between">
+                                                    <CardTitle>
+                                                        {platform.name}
+                                                    </CardTitle>
+                                                    <DeletePlatform
+                                                        id={platform.id}
+                                                        category={category.name}
+                                                        name={platform.name}
+                                                        disabled
+                                                    />
+                                                </div>
                                             </CardHeader>
                                             <CardContent>
-                                                <p>
+                                                <p className="text-sm">
                                                     <b>Start Time:</b>
                                                 </p>
                                                 <p className="text-xs">
@@ -104,13 +97,13 @@ export default function PlatformTracking({
                                                 <StopTimer
                                                     id={platform.id}
                                                     // category={platform.category}
-                                                    name={platform.name}
+                                                    // name={platform.name}
                                                 />
                                             </CardFooter>
                                         </Card>
                                     ))
                                 ) : (
-                                    <p className="text-center text-sm text-muted-foreground">
+                                    <p className="pl-2 text-sm text-muted-foreground">
                                         No platforms with a timer running in
                                         this category.
                                     </p>

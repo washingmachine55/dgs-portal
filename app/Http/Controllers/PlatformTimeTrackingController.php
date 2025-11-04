@@ -92,6 +92,21 @@ class PlatformTimeTrackingController extends Controller
      */
     public function create($id)
     {
+        // ensure no active timer already exists for this platform
+        $exists = DB::table('platform_time_tracking')
+        ->where('platform_id', $id)
+        ->whereNull('end_time')
+        ->where('stopped', false)
+        ->exists();
+
+        if ($exists) {
+            // return a 409 or an Inertia redirect with error — handle per your frontend expectations
+            return response()->json(['message' => 'Timer already running for this platform'], 409);
+            // return Inertia::render('welcome', [
+
+            // ]);
+            // return redirect()->back()->with('error', 'An error occurred!');
+        }
 
         $platformToTrack = Platforms::findOrFail($id);
         $date=now()->setTimezone("Asia/Karachi");

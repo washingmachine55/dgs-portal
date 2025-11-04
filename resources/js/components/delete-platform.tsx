@@ -16,12 +16,14 @@ interface DeletePlatformProps {
     id: number;
     category: string;
     name: string;
+    disabled?: boolean;
 }
 
 export default function DeletePlatform({
     id,
     category,
     name,
+    disabled,
 }: DeletePlatformProps) {
     return (
         <div className="">
@@ -31,6 +33,7 @@ export default function DeletePlatform({
                         variant="destructive"
                         className="text-xs"
                         data-test="delete-user-button"
+                        disabled={disabled}
                     >
                         <TrashIcon />
                     </Button>

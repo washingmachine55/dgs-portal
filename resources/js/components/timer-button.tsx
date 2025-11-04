@@ -5,11 +5,12 @@ import { Form } from '@inertiajs/react';
 
 interface DeletePlatformProps {
     id: number;
-    name: string;
+    // name: string;
+    disabled?: boolean;
 }
 
-export function StartTimer({ id }: DeletePlatformProps) {
-// export default function StartTimer() {
+export function StartTimer({ id, disabled }: DeletePlatformProps) {
+    // export default function StartTimer() {
     // const passwordInput = useRef<HTMLInputElement>(null);
     return (
         <Form
@@ -26,6 +27,7 @@ export function StartTimer({ id }: DeletePlatformProps) {
                 variant="default"
                 className="w-full"
                 data-test="start-timer-button"
+                disabled={disabled}
             >
                 Start Timer
             </Button>
