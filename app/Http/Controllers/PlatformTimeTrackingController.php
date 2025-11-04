@@ -147,6 +147,7 @@ class PlatformTimeTrackingController extends Controller
                 'platforms.platform_categories_id AS category_id',
                 'platform_categories.name AS category')
             ->where('platform_time_tracking.stopped', '=', true )
+            ->orderBy('id', 'desc')
             ->get();
 
         $tz = new CarbonTimeZone("Asia/Karachi");

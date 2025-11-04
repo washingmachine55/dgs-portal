@@ -211,7 +211,7 @@ export default function PlatformLayout({
                     return (
                         <div
                             key={category.id}
-                            className="relative max-h-max flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"
+                            className="relative max-h-max flex-1 overflow-clip rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"
                         >
                             <h2 className="m-4 text-xl font-semibold">
                                 {category.name}
