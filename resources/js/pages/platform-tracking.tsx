@@ -73,7 +73,7 @@ export default function PlatformTracking({
                                     categoryPlatforms.map((platform) => (
                                         <Card className="" key={platform.id}>
                                             <CardHeader>
-                                                <div className="inline-flex items-center justify-between">
+                                                <div className="inline-flex items-center justify-between wrap-anywhere">
                                                     <CardTitle>
                                                         {platform.name}
                                                     </CardTitle>

@@ -168,7 +168,7 @@ export default function TrackingHistory() {
                     {/* <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" /> */}
                     <DataTable columns={columns} data={data} />
                 </div>
-                <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 p-1 md:hidden md:min-h-min dark:border-sidebar-border">
+                <div className="relative min-h-[100vh] flex-1 overflow-x-scroll rounded-xl border border-sidebar-border/70 p-1 md:hidden md:min-h-min md:overflow-x-hidden dark:border-sidebar-border">
                     <DataTableSmall columns={columns} data={data} />
                 </div>
             </div>

@@ -153,6 +153,7 @@ export default function PlatformLayout({
                                                         id="name-1"
                                                         name="name"
                                                         placeholder="Enter the gaming platform's name (eg. PS5 - #1 )"
+                                                        className="text-sm"
                                                     />
                                                     <InputError
                                                         className="mt-2"
@@ -167,7 +168,7 @@ export default function PlatformLayout({
                                                         id="manufacturer-1"
                                                         name="manufacturer"
                                                         placeholder="Optionally enter the platform's manufacturer or vendor"
-                                                        // placeholder="N/A"
+                                                        className="text-sm"
                                                     />
                                                 </div>
                                             </div>
@@ -181,7 +182,7 @@ export default function PlatformLayout({
                                                     type="submit"
                                                     disabled={processing}
                                                 >
-                                                    Save changes
+                                                    Save
                                                 </Button>
                                             </DialogFooter>
                                             <Transition
@@ -221,7 +222,7 @@ export default function PlatformLayout({
                                     categoryPlatforms.map((platform) => (
                                         <Card key={platform.id}>
                                             <CardHeader>
-                                                <div className="inline-flex items-center justify-between">
+                                                <div className="inline-flex items-center justify-between wrap-anywhere">
                                                     <CardTitle>
                                                         <p key={platform.id}>
                                                             {platform.name}
@@ -266,7 +267,10 @@ export default function PlatformLayout({
                                     ))
                                 ) : (
                                     <p className="pl-2 text-sm text-muted-foreground">
-                                        No platforms in this category.
+                                        Either there are no platforms in this
+                                        category, or there's probably a timer
+                                        currently running on your created
+                                        platform.
                                     </p>
                                 )}
                             </div>

@@ -113,7 +113,7 @@ export default function DeletePlatform({
                                             type="submit"
                                             // data-test="confirm-delete-user-button"
                                         >
-                                            Delete Platfornm
+                                            Delete Platform
                                         </button>
                                     </Button>
                                 </DialogFooter>

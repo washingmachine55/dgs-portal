@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Platforms;
-use App\Models\PlatformCategories;
-use Carbon\Carbon;
 use Carbon\CarbonTimeZone;
 use Carbon\CarbonInterface;
+use Illuminate\Support\Str;
+use App\Models\PlatformCategories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePlatformsRequest;
@@ -77,7 +78,7 @@ class PlatformsController extends Controller
             'platforms' => $platforms->map(function ($platform) use ($platformsCurrentlyRunning) {
                 return [
                     'id' => $platform->id,
-                    'name' => $platform->name,
+                    'name' => Str::limit($platform->name, 40),
                     'manufacturer' => $platform->manufacturer,
                     'category' => $platform->category_id,
                     'is_running' => in_array($platform->id, $platformsCurrentlyRunning, true),

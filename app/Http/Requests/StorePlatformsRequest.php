@@ -25,8 +25,8 @@ class StorePlatformsRequest extends FormRequest
     {
         return [
             'category' => 'required|max:80',
-            'name' => 'required|unique:platforms|max:255',
-            'manufacturer' => 'nullable|max:255',
+            'name' => 'required|unique:platforms|max:60',
+            'manufacturer' => 'nullable|max:60',
         ];
     }
 }

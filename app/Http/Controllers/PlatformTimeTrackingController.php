@@ -8,6 +8,7 @@ use App\Models\Games;
 use App\Models\Platforms;
 use Carbon\CarbonTimeZone;
 use Carbon\CarbonInterface;
+use Illuminate\Support\Str;
 use App\Models\PlatformCategories;
 use Illuminate\Support\Facades\DB;
 use App\Models\PlatformTimeTracking;
@@ -58,7 +59,7 @@ class PlatformTimeTrackingController extends Controller
                 return [
                     'id' => $runningTime->id,
                     'platform_id' => $runningTime->platform_id,
-                    'name' => $runningTime->name,
+                    'name' => Str::limit($runningTime->name, 60),
                     // 'start_time' => $runningTime->start_time,
                     // 'start_time' => Carbon::parse($runningTime->start_time)->setTimezone("Asia/Karachi")
                     'start_time' => Carbon::parse($runningTime->start_time, "Asia/Karachi")
@@ -157,7 +158,7 @@ class PlatformTimeTrackingController extends Controller
                 return [
                     'id' => $runningTime->id,
                     'platform_id' => $runningTime->platform_id,
-                    'name' => $runningTime->name,
+                    'name' => Str::limit($runningTime->name, 40),
                     'date' => Carbon::parse($runningTime->date)->toFormattedDayDateString(),
                     'start_time' => Carbon::parse($runningTime->start_time, "Asia/Karachi")->format(' h:i:s A'),
                     'end_time' => Carbon::parse($runningTime->end_time, "Asia/Karachi")->format(' h:i:s A'),
