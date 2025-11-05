@@ -32,6 +32,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('tracking-history', [PlatformTimeTrackingController::class, 'show'])->name('tracking-history');
 
+    Route::get('/tracking-history/export_raw', [PlatformTimeTrackingController::class, 'export_raw']);
+    Route::get('/tracking-history/export', [PlatformTimeTrackingController::class, 'export']);
 });
 
 require __DIR__.'/settings.php';

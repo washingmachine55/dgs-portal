@@ -12,7 +12,8 @@ use Illuminate\Support\Str;
 use App\Models\PlatformCategories;
 use Illuminate\Support\Facades\DB;
 use App\Models\PlatformTimeTracking;
-use Illuminate\Auth\Events\Validated;
+use App\Exports\PlatformTimeTrackingExport;
+use App\Exports\PlatformTimeTrackingRawExport;
 use App\Http\Requests\StorePlatformTimeTrackingRequest;
 use App\Http\Requests\CreatePlatformTimeTrackingRequest;
 use App\Http\Requests\UpdatePlatformTimeTrackingRequest;
@@ -209,5 +210,17 @@ class PlatformTimeTrackingController extends Controller
     public function destroy(PlatformTimeTracking $platformTimeTracking)
     {
         //
+    }
+
+    public function export()
+    {
+        $now = Carbon::parse(Carbon::now(), "Asia/Karachi")->format('Y-m-d h_i_s A');
+        return (new PlatformTimeTrackingExport)->download("tracking-history - {$now}.csv");
+    }
+
+    public function export_raw()
+    {
+        $now = Carbon::parse(Carbon::now(), "Asia/Karachi")->format('Y-m-d h_i_s A');
+        return (new PlatformTimeTrackingRawExport)->download("tracking-history-raw - {$now}.csv");
     }
 }

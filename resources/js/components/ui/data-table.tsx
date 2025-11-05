@@ -248,23 +248,19 @@ export function DataTableSmall<TData, TValue>({
                                         key={cell.id}
                                         className="flex justify-between border-b py-1 last:border-0"
                                     >
-                                    <p>
-                                        <span className="font-bold pr-4">
-                                            {typeof cell.column.columnDef
-                                                .header === 'string'
-                                                ? cell.column.columnDef.header
-                                                : cell.column.columnDef.meta
-                                                    ?.label || ''}
-                                        </span>
-                                    </p>
-                                    <p>
-                                        <span className="align-self-center place-content-center items-center text-right overflow-hidden whitespace-pre min-w-32 max-w-52 block">
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext(),
-                                            )}
-                                        </span>
-                                    </p>
+                                            <span className="font-bold pr-4">
+                                                {typeof cell.column.columnDef
+                                                    .header === 'string'
+                                                    ? cell.column.columnDef.header
+                                                    : cell.column.columnDef.meta
+                                                        ?.label || ''}
+                                            </span>
+                                            <span className="align-self-center place-content-center items-center text-right overflow-hidden whitespace-pre min-w-32 max-w-52 block">
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </span>
                                     </div>
                                 ))}
                         </CardContent>

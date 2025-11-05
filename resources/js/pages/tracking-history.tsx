@@ -6,7 +6,15 @@ import { trackingHistory } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 import { ColumnDef } from '@tanstack/react-table';
-// import { ArrowUpDown } from 'lucide-react';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { DownloadIcon, EllipsisVertical, FileDown } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -164,6 +172,37 @@ export default function TrackingHistory() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
+                <div className="fixed top-3.5 right-4 z-50 w-fit p-0 px-0 md:top-[1.3rem] md:right-6">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline">
+                                <EllipsisVertical />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            align="end"
+                            className="[--radius:1rem]"
+                        >
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem>
+                                    <FileDown />
+                                    <a href="/tracking-history/export/">
+                                        Export
+                                    </a>
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem variant="default">
+                                    <DownloadIcon />
+                                    <a href="/tracking-history/export_raw/">
+                                        Export (Raw)
+                                    </a>
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
                 <div className="relative hidden min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 p-4 md:block md:min-h-min dark:border-sidebar-border">
                     {/* <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" /> */}
                     <DataTable columns={columns} data={data} />
